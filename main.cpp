@@ -5,6 +5,7 @@
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/videoio.hpp"
 
 #include <iostream>
 
@@ -23,10 +24,13 @@ RNG rng(12345);
 /** @function main */
 int main( int argc, const char** argv )
 {
-    CvCapture* capture;
+    VideoCapture capture(-1);
     Mat frame;
 
-   if (argc != 2) printf("Usage: classifier_test <classifier.xml>");
+   if (argc != 2) { 
+       printf("Usage: classifier_test <classifier.xml>\n");
+       return -1;
+   }
    else { 
 		cascade_name = argv[1]; 
    		cout << "Loading " << cascade_name << " ..." << endl;
@@ -42,7 +46,7 @@ int main( int argc, const char** argv )
     {
         while( true )
         {
-            frame = cvQueryFrame( capture );
+            capture.read(frame);
 
             //-- 3. Apply the classifier to the frame
             if( !frame.empty() )
