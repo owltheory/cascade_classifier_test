@@ -8,9 +8,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 #find_package( OpenCV REQUIRED )
 
 # dirs on nest
-link_libraries(/usr/local/lib)
-#include_directories(/usr/local/include/opencv)
-
+link_directories(/usr/local/Cellar/opencv/2.4.13.2/lib)
+include_directories(/usr/local/Cellar/opencv/2.4.13.2/include)
 
 set(SOURCE_FILES main.bak.cpp main.cpp)
 #add_executable(classifier_test ${SOURCE_FILES})
